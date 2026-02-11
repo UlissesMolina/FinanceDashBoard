@@ -1,0 +1,10 @@
+{
+  "name": "finance-dashboard",
+  "private": true,
+  "scripts": {
+    "dev": "cd finance-tracker && npm start",
+    "start": "cd finance-tracker && npm start",
+    "build": "cd finance-tracker && npm run build",
+    "install:all": "cd finance-tracker && npm install"
+  }
+}
