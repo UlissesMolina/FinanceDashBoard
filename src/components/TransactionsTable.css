@@ -2,6 +2,40 @@
   margin-bottom: 1.5rem;
 }
 
+.transactions-type-filters {
+  display: flex;
+  gap: 0.25rem;
+  margin-bottom: 1rem;
+}
+
+.transactions-type-btn {
+  padding: 0.4rem 0.75rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  font-family: var(--font-body);
+  color: var(--gray-600);
+  background: var(--gray-100);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.transactions-type-btn:hover {
+  color: var(--gray-900);
+  background: var(--gray-200);
+}
+
+.transactions-type-btn--active {
+  background: var(--accent);
+  color: white;
+}
+
+.transactions-type-btn--active:hover {
+  background: var(--accent-dark);
+  color: white;
+}
+
 .transactions-header {
   display: flex;
   align-items: center;
@@ -9,6 +43,56 @@
   flex-wrap: wrap;
   gap: 0.75rem;
   margin-bottom: 1rem;
+}
+
+.transactions-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.transactions-export {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.transactions-export-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.4rem 0.6rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--gray-700);
+  background: var(--gray-100);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.transactions-export-btn:hover {
+  background: var(--gray-200);
+  color: var(--gray-900);
+}
+
+.transactions-filter-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.35rem 0.5rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--gray-700);
+  background: var(--gray-100);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.transactions-filter-tag:hover {
+  background: var(--gray-200);
 }
 
 .transactions-search {
@@ -68,6 +152,120 @@
 
 .transactions-table tbody tr:hover {
   background: var(--gray-50);
+}
+
+.th-expand,
+.td-expand {
+  width: 2.25rem;
+  padding-left: 0.5rem !important;
+  color: var(--gray-400);
+  vertical-align: middle;
+}
+
+.transactions-row-clickable {
+  cursor: pointer;
+}
+
+.transactions-row-expanded {
+  background: var(--gray-50);
+}
+
+.transactions-expanded-row td {
+  padding: 0 !important;
+  border-bottom: 1px solid var(--gray-200);
+  vertical-align: top;
+}
+
+.transactions-expanded-cell {
+  background: var(--gray-50);
+}
+
+.transactions-expanded-content {
+  padding: 1rem 0.75rem 1rem 2.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 1.5rem;
+  align-items: flex-start;
+}
+
+.transactions-expanded-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 160px;
+}
+
+.transactions-expanded-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--gray-500);
+}
+
+.transactions-expanded-notes {
+  font-size: 0.875rem;
+  padding: 0.5rem 0.6rem;
+  border: 1px solid var(--gray-200);
+  border-radius: 6px;
+  resize: vertical;
+  min-height: 3rem;
+  font-family: inherit;
+}
+
+.transactions-expanded-notes:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(22, 163, 74, 0.15);
+}
+
+.transactions-expanded-placeholder {
+  font-size: 0.875rem;
+  color: var(--gray-500);
+}
+
+.transactions-expanded-select {
+  font-size: 0.875rem;
+  padding: 0.4rem 0.6rem;
+  border: 1px solid var(--gray-200);
+  border-radius: 6px;
+  background: white;
+  min-width: 140px;
+}
+
+.transactions-expanded-details-btn {
+  align-self: flex-end;
+  padding: 0.4rem 0.75rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--accent);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.transactions-expanded-details-btn:hover {
+  text-decoration: underline;
+}
+
+.transactions-load-more {
+  padding: 0.75rem;
+  text-align: center;
+  border-top: 1px solid var(--gray-100);
+}
+
+.transactions-load-more-btn {
+  padding: 0.4rem 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--primary);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.transactions-load-more-btn:hover {
+  text-decoration: underline;
 }
 
 .amount-col {

@@ -11,16 +11,17 @@ import './MonthlyComparison.css';
 interface MonthlyComparisonProps {
   year: number;
   month: number;
+  period?: string;
   className?: string;
 }
 
-export function MonthlyComparison({ year, month, className }: MonthlyComparisonProps) {
+export function MonthlyComparison({ year, month, period = 'MONTH', className }: MonthlyComparisonProps) {
   const prevMonth = month === 0 ? 11 : month - 1;
   const prevYear = month === 0 ? year - 1 : year;
 
-  const { data: current } = useQuery<GetOverviewMetricsQuery>(GET_OVERVIEW_METRICS, { variables: { year, month } });
+  const { data: current } = useQuery<GetOverviewMetricsQuery>(GET_OVERVIEW_METRICS, { variables: { year, month, period } });
   const { data: previous } = useQuery<GetOverviewMetricsQuery>(GET_OVERVIEW_METRICS, {
-    variables: { year: prevYear, month: prevMonth },
+    variables: { year: prevYear, month: prevMonth, period },
   });
 
   const cur = current?.overviewMetrics;

@@ -1,3 +1,7 @@
+.chart-card.card {
+  padding: 2rem;
+}
+
 .balance-chart {
   min-height: 260px;
 }

@@ -5,11 +5,11 @@
   /* Design system - landing & dashboard */
   --accent: #10b981;
   --accent-dark: #059669;
-  --bg: #ffffff;
+  --bg: #f8f9fb;
   --text: #0a0a0a;
   --text-secondary: #666666;
   --border: #e5e5e5;
-  --card-bg: #fafafa;
+  --card-bg: #ffffff;
 
   /* Typography */
   --font-display: 'Plus Jakarta Sans', -apple-system, sans-serif;
@@ -54,24 +54,24 @@
   --radius-xl: 24px;
   --radius-full: 9999px;
 
-  /* Primary - Green for money growth */
-  --primary: #10b981;
-  --primary-dark: #059669;
+  /* Primary - blue accent */
+  --primary: #3b82f6;
+  --primary-dark: #2563eb;
 
   /* Status */
-  --income: #10b981;
-  --expense: #ef4444;
-  --neutral: #6366f1;
+  --income: #16a34a;
+  --expense: #dc2626;
+  --neutral: #171717;
 
-  /* Categories - distinct colors */
-  --cat-income: #10b981;
-  --cat-food: #f59e0b;
-  --cat-transport: #3b82f6;
-  --cat-shopping: #ec4899;
-  --cat-entertainment: #8b5cf6;
-  --cat-bills: #6366f1;
-  --cat-healthcare: #ef4444;
-  --cat-other: #6b7280;
+  /* Categories - toned down ~20% */
+  --cat-income: #16a34a;
+  --cat-food: #c47d09;
+  --cat-transport: #2d6bc9;
+  --cat-shopping: #b93a7a;
+  --cat-entertainment: #6d49c4;
+  --cat-bills: #4f52c1;
+  --cat-healthcare: #c73a3a;
+  --cat-other: #5a5e6b;
 
   /* Neutrals */
   --gray-50: #fafafa;
@@ -101,7 +101,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: var(--gray-50);
+  background: var(--bg);
   color: var(--gray-900);
 }
 

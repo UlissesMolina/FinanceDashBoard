@@ -8,6 +8,7 @@ export interface Transaction {
   category: string;
   date: string;
   createdAt: string;
+  notes?: string;
 }
 
 export interface CategorySummary {
@@ -23,15 +24,16 @@ export interface DailyBalance {
   expense: number;
 }
 
+/* Home page theme: emerald, teal, cyan, purple */
 export const CATEGORY_COLORS: Record<string, string> = {
   'Income': '#10b981',
-  'Food & Dining': '#f59e0b',
-  'Transportation': '#3b82f6',
-  'Shopping': '#ec4899',
-  'Entertainment': '#8b5cf6',
-  'Bills & Utilities': '#6366f1',
-  'Healthcare': '#ef4444',
-  'Other': '#6b7280',
+  'Food & Dining': '#059669',
+  'Transportation': '#06b6d4',
+  'Shopping': '#8b5cf6',
+  'Entertainment': '#7c3aed',
+  'Bills & Utilities': '#0d9488',
+  'Healthcare': '#14b8a6',
+  'Other': '#64748b',
 };
 
 export const CATEGORIES = Object.keys(CATEGORY_COLORS);

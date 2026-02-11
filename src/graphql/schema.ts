@@ -7,6 +7,7 @@ export const typeDefs = `
     category: String!
     date: String!
     createdAt: String!
+    notes: String
   }
 
   type CategorySummary {
@@ -29,11 +30,37 @@ export const typeDefs = `
     transactionCount: Int!
   }
 
+  input AddTransactionInput {
+    description: String!
+    amount: Float!
+    type: String!
+    category: String!
+    date: String!
+  }
+
+  enum TimePeriod {
+    WEEK
+    MONTH
+    QUARTER
+    YEAR
+  }
+
   type Query {
     transactions(limit: Int): [Transaction!]!
-    transactionsByMonth(year: Int!, month: Int!): [Transaction!]!
-    overviewMetrics(year: Int!, month: Int!): OverviewMetrics!
-    spendingByCategory(year: Int!, month: Int!): [CategorySummary!]!
-    dailyBalances(year: Int!, month: Int!): [DailyBalance!]!
+    transactionsByMonth(year: Int!, month: Int!, period: TimePeriod): [Transaction!]!
+    overviewMetrics(year: Int!, month: Int!, period: TimePeriod): OverviewMetrics!
+    spendingByCategory(year: Int!, month: Int!, period: TimePeriod): [CategorySummary!]!
+    dailyBalances(year: Int!, month: Int!, period: TimePeriod): [DailyBalance!]!
+  }
+
+  input UpdateTransactionInput {
+    id: ID!
+    category: String
+    notes: String
+  }
+
+  type Mutation {
+    addTransaction(input: AddTransactionInput!): Transaction!
+    updateTransaction(input: UpdateTransactionInput!): Transaction!
   }
 `;

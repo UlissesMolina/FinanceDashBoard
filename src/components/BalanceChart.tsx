@@ -19,12 +19,13 @@ import './BalanceChart.css';
 interface BalanceChartProps {
   year: number;
   month: number;
+  period?: string;
   className?: string;
 }
 
-export function BalanceChart({ year, month, className }: BalanceChartProps) {
+export function BalanceChart({ year, month, period = 'MONTH', className }: BalanceChartProps) {
   const { data, loading, error } = useQuery<GetDailyBalancesQuery>(GET_DAILY_BALANCES, {
-    variables: { year, month },
+    variables: { year, month, period },
   });
 
   if (loading) return <div className={clsx('chart-card', 'card', className)}>Loading...</div>;
@@ -54,16 +55,16 @@ export function BalanceChart({ year, month, className }: BalanceChartProps) {
           <AreaChart data={chartData} margin={{ top: 8, right: 8, left: 0, bottom: 0 }}>
             <defs>
               <linearGradient id="balanceGradient" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="var(--primary)" stopOpacity={0.4} />
-                <stop offset="100%" stopColor="var(--primary)" stopOpacity={0} />
+                <stop offset="0%" stopColor="var(--primary)" stopOpacity={0.15} />
+                <stop offset="100%" stopColor="var(--primary)" stopOpacity={0.02} />
               </linearGradient>
             </defs>
-            <CartesianGrid strokeDasharray="3 3" stroke="var(--gray-200)" vertical={false} />
+            <CartesianGrid strokeDasharray="3 3" stroke="#f3f4f6" vertical={false} />
             <XAxis
               dataKey="displayDate"
               tick={{ fontSize: 11, fill: 'var(--gray-500)' }}
               tickLine={false}
-              axisLine={{ stroke: 'var(--gray-200)' }}
+              axisLine={{ stroke: '#f3f4f6' }}
               interval="preserveStartEnd"
             />
             <YAxis
@@ -82,7 +83,7 @@ export function BalanceChart({ year, month, className }: BalanceChartProps) {
               type="monotone"
               dataKey="balance"
               stroke="var(--primary)"
-              strokeWidth={2}
+              strokeWidth={2.5}
               fill="url(#balanceGradient)"
             />
           </AreaChart>

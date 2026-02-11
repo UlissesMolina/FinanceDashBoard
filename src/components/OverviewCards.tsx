@@ -16,15 +16,16 @@ import './OverviewCards.css';
 interface OverviewCardsProps {
   year: number;
   month: number;
+  period?: string;
   className?: string;
 }
 
-export function OverviewCards({ year, month, className }: OverviewCardsProps) {
+export function OverviewCards({ year, month, period = 'MONTH', className }: OverviewCardsProps) {
   const { data, loading, error } = useQuery<GetOverviewMetricsQuery>(GET_OVERVIEW_METRICS, {
-    variables: { year, month },
+    variables: { year, month, period },
   });
   const { data: balanceData } = useQuery<GetDailyBalancesQuery>(GET_DAILY_BALANCES, {
-    variables: { year, month },
+    variables: { year, month, period },
   });
 
   if (loading) return <div className={clsx('overview-cards', className)}>Loading...</div>;
