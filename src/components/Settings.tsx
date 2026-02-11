@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import clsx from 'clsx';
-import { User, Mail, DollarSign, Calendar, Layout, Bell, Mail as MailIcon, Moon, Tags, Merge, Palette, Download, Trash2, FileText } from 'lucide-react';
+import { User, Mail, DollarSign, Calendar, Bell, Mail as MailIcon, Moon, Tags, Merge, Palette, Download, Trash2, FileText } from 'lucide-react';
 import './Settings.css';
 
 interface SettingsProps {
