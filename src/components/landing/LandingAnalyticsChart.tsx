@@ -104,6 +104,7 @@ export function LandingAnalyticsChart() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [isMobile, setIsMobile] = useState(false);
+  const [shouldRenderChart, setShouldRenderChart] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -112,7 +113,11 @@ export function LandingAnalyticsChart() {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) setInView(true);
+          if (entry.isIntersecting) {
+            setInView(true);
+            // Delay chart rendering until after container has final dimensions
+            setTimeout(() => setShouldRenderChart(true), 100);
+          }
         });
       },
       { threshold: 0.15, rootMargin: '0px 0px -40px 0px' }
@@ -156,55 +161,60 @@ export function LandingAnalyticsChart() {
             <div className="landing-chart-skeleton-donut" />
           </div>
         )}
-        <div className={`landing-analytics-chart landing-analytics-chart--pointer ${inView ? 'landing-analytics-chart--visible' : ''}`}>
-        <ResponsiveContainer width="100%" height={isMobile ? CHART_HEIGHT_MOBILE : CHART_HEIGHT_DESKTOP}>
-          <PieChart>
-            <Pie
-              data={chartData}
-              cx="50%"
-              cy={isMobile ? '50%' : '50%'}
-              innerRadius={isMobile ? 40 : 56}
-              outerRadius={isMobile ? 64 : 96}
-              paddingAngle={2}
-              dataKey="value"
-              nameKey="name"
-              isAnimationActive={inView}
-              animationBegin={0}
-              animationDuration={1000}
-              animationEasing="ease-out"
-              activeIndex={displayIndex}
-              activeShape={renderActiveShape}
-              onMouseEnter={handleSegmentEnter}
-              onMouseLeave={handleSegmentLeave}
-              onClick={handleSegmentClick}
-            >
-              {chartData.map((entry, index) => (
-                <Cell
-                  key={`cell-${index}`}
-                  fill={entry.color}
-                  opacity={displayIndex == null || displayIndex === index ? 1 : 0.4}
-                  style={{ cursor: 'pointer', transition: 'opacity 0.2s ease' }}
-                />
-              ))}
-            </Pie>
-            <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(0,0,0,0.04)' }} />
-            {!isMobile && (
-              <Legend
-                layout="vertical"
-                verticalAlign="middle"
-                align="right"
-                content={(props: { payload?: LegendPayloadItem[] }) => (
-                  <CustomLegend
-                    payload={props.payload}
-                    activeIndex={displayIndex}
-                    onItemHover={setActiveIndex}
+        <div
+          className={`landing-analytics-chart landing-analytics-chart--pointer ${inView ? 'landing-analytics-chart--visible' : ''}`}
+          style={{ height: isMobile ? CHART_HEIGHT_MOBILE : CHART_HEIGHT_DESKTOP }}
+        >
+          {shouldRenderChart && (
+            <ResponsiveContainer width="100%" height="100%">
+              <PieChart>
+                <Pie
+                  data={chartData}
+                  cx="50%"
+                  cy="50%"
+                  innerRadius={isMobile ? 40 : 56}
+                  outerRadius={isMobile ? 64 : 96}
+                  paddingAngle={2}
+                  dataKey="value"
+                  nameKey="name"
+                  isAnimationActive={true}
+                  animationBegin={0}
+                  animationDuration={1000}
+                  animationEasing="ease-out"
+                  activeIndex={displayIndex}
+                  activeShape={renderActiveShape}
+                  onMouseEnter={handleSegmentEnter}
+                  onMouseLeave={handleSegmentLeave}
+                  onClick={handleSegmentClick}
+                >
+                  {chartData.map((entry, index) => (
+                    <Cell
+                      key={`cell-${index}`}
+                      fill={entry.color}
+                      opacity={displayIndex == null || displayIndex === index ? 1 : 0.4}
+                      style={{ cursor: 'pointer', transition: 'opacity 0.2s ease' }}
+                    />
+                  ))}
+                </Pie>
+                <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(0,0,0,0.04)' }} />
+                {!isMobile && (
+                  <Legend
+                    layout="vertical"
+                    verticalAlign="middle"
+                    align="right"
+                    content={(props: { payload?: LegendPayloadItem[] }) => (
+                      <CustomLegend
+                        payload={props.payload}
+                        activeIndex={displayIndex}
+                        onItemHover={setActiveIndex}
+                      />
+                    )}
+                    payload={chartData.map((d) => ({ value: d.name, color: d.color, payload: { value: d.value, percent: d.percent } }))}
                   />
                 )}
-                payload={chartData.map((d) => ({ value: d.name, color: d.color, payload: { value: d.value, percent: d.percent } }))}
-              />
-            )}
-          </PieChart>
-        </ResponsiveContainer>
+              </PieChart>
+            </ResponsiveContainer>
+          )}
         </div>
       </div>
       {isMobile && (

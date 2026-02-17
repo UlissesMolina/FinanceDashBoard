@@ -2,13 +2,14 @@
   position: relative;
   width: 100%;
   max-width: 520px;
+  /* Min width so pie (diameter ~192px) + legend fits and is not clipped on desktop */
+  min-width: 380px;
   margin: 0 auto;
   padding: 1.5rem;
   background: var(--card-bg);
   border-radius: var(--radius-lg);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.04);
-  min-width: 0;
-  overflow: visible;
+  overflow: hidden;
   opacity: 0.92;
   transform: translateY(12px);
   transition: opacity 0.5s ease-out, transform 0.5s ease-out;
@@ -41,6 +42,8 @@
 .landing-chart-area {
   position: relative;
   min-height: 280px;
+  min-width: 0; /* allow flex/grid parent to give width on desktop */
+  overflow: hidden; /* clip any overflow */
 }
 
 /* Loading skeleton: donut-shaped pulse when chart is not yet in view */
@@ -76,6 +79,8 @@
   min-width: 0;
   opacity: 0;
   transition: opacity 0.4s ease-out;
+  position: relative;
+  overflow: hidden;
 }
 
 .landing-analytics-chart--visible {
@@ -203,8 +208,8 @@
 @media (max-width: 768px) {
   .landing-analytics-chart-wrap {
     max-width: 100%;
+    min-width: 0; /* allow narrow viewports on mobile */
     padding: 1rem;
-    min-width: 0;
   }
 
   .landing-chart-area {

@@ -902,6 +902,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  min-width: 0; /* so chart container gets a defined width on desktop */
 }
 
 .landing-screenshot-wrap {
@@ -919,6 +920,7 @@
 .landing-screenshot-wrap--analytics {
   max-width: 640px;
   overflow: visible;
+  min-width: 0; /* so ResponsiveContainer gets a defined width in grid/flex */
 }
 
 .landing-screenshot {
